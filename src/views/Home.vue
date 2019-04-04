@@ -7,6 +7,7 @@
         </div>
         <div class="card-body column">
           <button class="button is-primary" v-on:click="getData">Hämta</button>
+          <h1 v-if="storeData">{{storeData}}</h1>
         </div>
       </div>
     </div>
@@ -17,6 +18,11 @@
 export default {
   name: "home",
   components: {},
+  computed: {
+    storeData() {
+      return this.$store.getters["storeData"];
+    }
+  },
   methods: {
     getData() {
       this.$store.dispatch("getData");
