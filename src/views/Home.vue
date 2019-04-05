@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="home columns is-gapless">
+    <div ref="home" class="home columns is-gapless">
       <div class="card column">
         <div class="card-header column">
           <h1>Leaderboard</h1>
@@ -8,10 +8,7 @@
         <div class="card-body column">
           <Leaderboard :users="users"></Leaderboard>
         </div>
-        <div class="card-bottom column">
-          <input class="input" v-model="name" placeholder="Username">
-          <button class="button is-primary" v-on:click="login">Login {{name}}</button>
-        </div>
+        <div class="card-bottom column"></div>
       </div>
     </div>
     <div class="home columns is-gapless" v-if="user">
@@ -19,7 +16,7 @@
         <div class="card-header column">
           <h1>hello {{user.username}}</h1>
         </div>
-        <div class="card-body column" v-if="user">
+        <div class="card-body column">
           <h1>
             <b>User:</b>
             {{user.username}}
@@ -37,9 +34,7 @@
             {{user.progression}}
           </h1>
         </div>
-        <div class="card-bottom column">
-          <h1>{{storeData.body}}</h1>
-        </div>
+        <div class="card-bottom column"></div>
       </div>
     </div>
   </div>
@@ -59,6 +54,9 @@ export default {
       ]
     };
   },
+  created() {
+    this.getData();
+  },
   components: {
     Leaderboard
   },
@@ -71,11 +69,8 @@ export default {
     }
   },
   methods: {
-    login() {
-      this.getData();
-      this.$store.dispatch("login", this.name);
-    },
     getData() {
+      console.log("geting data");
       this.$store.dispatch("getData");
     }
   }

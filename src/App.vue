@@ -1,9 +1,39 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div>
+      <router-view/>
+    </div>
   </div>
 </template>
 
+
+<script>
+import Login from "./components/Login.vue";
+export default {
+  data() {
+    return {
+      loginError: false
+    };
+  },
+
+  components: {
+    Login
+  },
+
+  methods: {
+    getUser(name) {
+      this.$store.dispatch("getUser", name).catch(err => {
+        this.loginError = true;
+      });
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.getters["user"];
+    }
+  }
+};
+</script>
 <style lang="scss">
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

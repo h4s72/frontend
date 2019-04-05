@@ -9,8 +9,12 @@ import axios from 'axios'
 Vue.use(Buefy)
 Vue.config.productionTip = false
 
-new Vue({
+var vm = new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
+
+
+router.beforeEach((to, from, next) => {
+})
