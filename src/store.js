@@ -7,16 +7,23 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     data: null,
+    user: null
   },
   getters: {
     storeData: (state) => {
       return state.data;
     },
+    user: (state) => {
+      return state.user;
+    }
   },
   mutations: {
     setData: (state, data) => {
       state.data = data;
     },
+    setUser: (state, user) => {
+      state.user = user;
+    }
   },
   actions: {
     getData: (context) => {
@@ -24,11 +31,12 @@ export default new Vuex.Store({
         name: "hello",
         body: "Let's make the world a better place"
       })
-      /*
-      axios.get('/api/data')
-        .then(res => res.json())
-        .then(json => console.log(json))
-        */
+    },
+    login: (context, name) => {
+      axios.get('/api/${name}')
+        .then(user => {
+          context.commit('setUser', user)
+        })
     }
   }
 })

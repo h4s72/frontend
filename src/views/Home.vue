@@ -9,7 +9,9 @@
           <img src="mission.png">
         </div>
         <div class="card-bottom column">
-          <button class="button" v-on:click="getData">Get Data</button>
+          <input v-model="name">
+          {{name}}
+          <button class="button" v-on:click="login">login</button>
         </div>
       </div>
     </div>
@@ -21,7 +23,7 @@
         <div class="card-body column">
           <h1>{{storeData.body}}</h1>
         </div>
-        <div class="card-bottom column"></div>
+        <div class="card-bottom column" v-if="user">{{user}}</div>
       </div>
     </div>
   </div>
@@ -30,13 +32,24 @@
 <script>
 export default {
   name: "home",
+  data() {
+    return {
+      name: ""
+    };
+  },
   components: {},
   computed: {
+    user() {
+      return this.$store.getters["user"];
+    },
     storeData() {
       return this.$store.getters["storeData"];
     }
   },
   methods: {
+    login() {
+      this.$store.dispatch("login", name);
+    },
     getData() {
       this.$store.dispatch("getData");
     }
