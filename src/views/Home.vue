@@ -9,9 +9,8 @@
           <img src="mission.png">
         </div>
         <div class="card-bottom column">
-          <input v-model="name">
-          {{name}}
-          <button class="button" v-on:click="login">login</button>
+          <input class="input" v-model="name" placeholder="Username">
+          <button class="button is-primary" v-on:click="login">Login {{name}}</button>
         </div>
       </div>
     </div>
@@ -48,6 +47,7 @@ export default {
   },
   methods: {
     login() {
+      this.getData();
       this.$store.dispatch("login", name);
     },
     getData() {
@@ -64,12 +64,38 @@ export default {
 }
 button {
   width: 100%;
+  //animation: flash 2s;
+  animation-iteration-count: infinite;
 }
 img {
   width: 100%;
 }
 .card {
   width: 100%;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(100px);
+  }
+  80% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .card-bottom {
@@ -79,6 +105,7 @@ img {
   border-bottom: 1px solid rgba(109, 109, 109, 0.671);
 }
 .home {
+  animation: slideIn 1s;
   transition: 0.5s box-shadow;
   &:hover {
     box-shadow: 5px 5px 5px rgba(146, 146, 146, 0.849);
