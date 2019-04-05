@@ -33,12 +33,11 @@ export default new Vuex.Store({
       })
     },
     login: (context, name) => {
-
-      /*
-        axios.get('/api/${name}')
-          .then(user => {
-            context.commit('setUser', user)
-          })*/
+      axios.get(`/api/${name}`)    //<-- Use for dist
+      // axios.get(`http://localhost:6722/api/${name}`)  // Use for development (npm run serve)
+        .then(user => {
+          context.commit('setUser', user.data)
+        })
     }
   }
 })

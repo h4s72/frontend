@@ -48,7 +48,7 @@ export default {
   methods: {
     login() {
       this.getData();
-      this.$store.dispatch("login", name);
+      this.$store.dispatch("login", this.name);
     },
     getData() {
       this.$store.dispatch("getData");
