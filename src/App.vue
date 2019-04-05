@@ -23,4 +23,31 @@
     }
   }
 }
+.card {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.card-bottom {
+  border-top: 1px solid rgba(109, 109, 109, 0.671);
+}
+.card-header {
+  border-bottom: 1px solid rgba(109, 109, 109, 0.671);
+}
+.home {
+  animation: slideIn 1s;
+  transition: 0.5s box-shadow;
+  &:hover {
+    box-shadow: 5px 5px 5px rgba(146, 146, 146, 0.849);
+    transition: 0.5s box-shadow;
+  }
+  h1 {
+    font-size: 2em;
+
+    &:hover {
+      transition: 0.5s;
+      color: rgb(81, 61, 155);
+      cursor: pointer;
+    }
+  }
+}
 </style>
